@@ -1,1 +1,3 @@
-import data from './data.js';
+import loadHandler from './handlers/loadHandler.js';
+
+window.addEventListener('load', loadHandler);
