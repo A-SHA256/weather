@@ -1,13 +1,6 @@
-const dayBox = (data) => {
-    const { time, temperature_2m } = data.hourly;
+import grouping from "../utils/grouping.js";
 
-    const grouped = {};
-    time.forEach((timestamp, i) => {
-        const [date, hour] = timestamp.split('T');
-        if (!grouped[date]) grouped[date] = [];
-        grouped[date].push({ hour, temperature: temperature_2m[i] });
-    });
-
+const dayBox = (grouped = {}) => {
     const container = document.createElement('div');
     container.className = 'weather-container';
 
@@ -22,7 +15,7 @@ const dayBox = (data) => {
         const ul = document.createElement('ul');
         hours.forEach(({ hour, temperature }) => {
             const li = document.createElement('li');
-            li.textContent = `${hour} — ${temperature}°C`;
+            li.textContent = `${hour}: ${temperature}`;
             ul.appendChild(li);
         });
 
